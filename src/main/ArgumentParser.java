@@ -34,7 +34,7 @@ public record ArgumentParser(String[] args) {
         return command;
     }
 
-    private void setDefaults(Command command) {
+    private void setDefaults(Command command) throws IOException {
         if (command.getMode() == null) {
             command.setMode(DOWNLOAD);
         }

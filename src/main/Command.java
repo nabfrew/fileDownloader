@@ -4,6 +4,7 @@ import exceptions.InvalidArgumentException;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Command {
     public static final String DEFAULT_URL_LIST = "urlList.txt";
     private Mode mode;
     private File outputDirectory;
-    private File urlListFile;
+    private String urlListFile;
     private final List<String> urls = new ArrayList<>();
     private Boolean verbose;
 
@@ -63,7 +64,7 @@ public class Command {
             outputDirectory = new File(propertyValue);
         } else if (URL_LIST_FLAG.contains(propertyFlag)) {
             verifyDuplicate(urlListFile);
-            urlListFile = new File(propertyValue);
+            urlListFile = propertyValue;
             setUrls();
         } else if (VERBOSE_FLAG.contains(propertyFlag)) {
             verifyDuplicate(verbose);
@@ -107,18 +108,22 @@ public class Command {
                     urls.add(url);
                 }
             }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Url list file, " + urlListFile + " not found.");
         }
     }
 
-    public void setDefaultUrlListFile() {
-        urlListFile = new File(new File("").getAbsoluteFile(), DEFAULT_URL_LIST);
+    public void setDefaultUrlListFile() throws IOException {
+        File pwd = new File("").getAbsoluteFile();
+        urlListFile = new File(pwd, DEFAULT_URL_LIST).toString();
+        setUrls();
     }
 
     public void setDefaultOutputDirectory() {
         outputDirectory = new File("").getAbsoluteFile();
     }
 
-    public File getUrlListFile() {
+    public String getUrlListFile() {
         return urlListFile;
     }
 

@@ -45,10 +45,11 @@ class ArgumentParserTest {
     @Test
     void defaultOptions() throws InvalidArgumentException, IOException {
         String[] args = {};
+        File pwd = new File("").getAbsoluteFile();
         var command = new ArgumentParser(args).parse();
         assertEquals(DOWNLOAD, command.getMode());
         assertEquals(new File("").getAbsoluteFile(), command.getOutputDirectory());
-        assertEquals(new File(new File("").getAbsoluteFile(), DEFAULT_URL_LIST), command.getUrlListFile());
+        assertEquals(new File(pwd, DEFAULT_URL_LIST).getAbsolutePath(), command.getUrlListFile());
         assertEquals(command.getVerbose(), TRUE);
     }
 
@@ -79,7 +80,7 @@ class ArgumentParserTest {
         String[] args = {URL_LIST_FLAG_TERSE, file.getAbsolutePath()};
 
         var command = new ArgumentParser(args).parse();
-        assertEquals(new File(tmpDir, filename).getAbsolutePath(), command.getUrlListFile().getPath());
+        assertEquals(new File(tmpDir, filename).getAbsolutePath(), command.getUrlListFile());
         assertArrayEquals(URLS, command.getUrls().toArray());
     }
 
