@@ -114,7 +114,7 @@ public class Command {
     }
 
     public void setDefaultUrlListFile() throws IOException {
-        File pwd = new File("").getAbsoluteFile();
+        var pwd = new File("").getAbsoluteFile();
         urlListFile = new File(pwd, DEFAULT_URL_LIST).toString();
         setUrls();
     }

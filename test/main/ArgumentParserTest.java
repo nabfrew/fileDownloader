@@ -50,7 +50,7 @@ class ArgumentParserTest {
         assertEquals(DOWNLOAD, command.getMode());
         assertEquals(new File("").getAbsoluteFile(), command.getOutputDirectory());
         assertEquals(new File(pwd, DEFAULT_URL_LIST).getAbsolutePath(), command.getUrlListFile());
-        assertEquals(command.getVerbose(), TRUE);
+        assertEquals(TRUE, command.getVerbose());
     }
 
     @Test
@@ -68,14 +68,14 @@ class ArgumentParserTest {
         String[] args = {VERBOSE_FLAG_TERSE, VERBOSE_FALSE_TERSE};
 
         var command = new ArgumentParser(args).parse();
-        assertEquals(command.getVerbose(), FALSE);
+        assertEquals(FALSE, command.getVerbose());
     }
 
     @Test
     void setsFile() throws InvalidArgumentException, IOException {
         String filename = "file.txt";
         File file = new File(tmpDir, filename).getAbsoluteFile();
-        writeFile(filename, URLS);
+        writeFile(filename);
 
         String[] args = {URL_LIST_FLAG_TERSE, file.getAbsolutePath()};
 
@@ -102,9 +102,9 @@ class ArgumentParserTest {
 
     // Helper methods
 
-    private void writeFile(String file, String[] urls) throws IOException {
+    private void writeFile(String file) throws IOException {
         try(var writer = new FileWriter(new File(tmpDir, file)); var bufferedWriter = new BufferedWriter(writer)) {
-            for (var url : urls) {
+            for (var url : ArgumentParserTest.URLS) {
                 bufferedWriter.write(url);
                 bufferedWriter.newLine();
             }
