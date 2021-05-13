@@ -2,6 +2,7 @@ package main;
 
 import exceptions.InvalidArgumentException;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -13,9 +14,12 @@ public record ArgumentParser(String[] args) {
 
     protected static final List<String> HELP_FLAG = Arrays.asList("-h", "-help");
     protected static final List<String> OUTPUT_DIRECTORY_FLAG = Arrays.asList("-d", "-directory");
+    protected static final List<String> VERBOSE_FLAG = Arrays.asList("-v", "-verbose");
+    public static final List<String> VERBOSE_FALSE = Arrays.asList("f", "false");
+    public static final List<String> VERBOSE_TRUE = Arrays.asList("t", "true");
     protected static final List<String> URL_LIST_FLAG = Collections.singletonList("-url");
 
-    public Command parse() throws InvalidArgumentException {
+    public Command parse() throws InvalidArgumentException, IOException {
         Command command = new Command();
         if (args == null || args.length == 0 ) {
             setDefaults(command);
@@ -40,9 +44,12 @@ public record ArgumentParser(String[] args) {
         if (command.getUrlListFile() == null) {
             command.setDefaultUrlListFile();
         }
+        if (command.getVerbose() == null) {
+            command.setVerbose(true);
+        }
     }
 
-    private void parseFlags(String[] args, Command command) throws InvalidArgumentException {
+    private void parseFlags(String[] args, Command command) throws InvalidArgumentException, IOException {
         for (var i = 0; i < args.length; i += 2) {
             if (i + 2 > args.length) {
                 throw new InvalidArgumentException("property value missing for " + args[i]);
