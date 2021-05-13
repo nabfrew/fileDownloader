@@ -1,6 +1,6 @@
-package main;
+package com;
 
-import exceptions.InvalidArgumentException;
+import dlexceptions.InvalidArgumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -11,16 +11,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 
+import static com.ArgumentParser.HELP_FLAG;
+import static com.ArgumentParser.OUTPUT_DIRECTORY_FLAG;
+import static com.ArgumentParser.URL_LIST_FLAG;
+import static com.ArgumentParser.VERBOSE_FALSE;
+import static com.ArgumentParser.VERBOSE_FLAG;
+import static com.Command.DEFAULT_URL_LIST;
+import static com.Command.Mode.DOWNLOAD;
+import static com.Command.Mode.HELP;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import static main.ArgumentParser.HELP_FLAG;
-import static main.ArgumentParser.OUTPUT_DIRECTORY_FLAG;
-import static main.ArgumentParser.URL_LIST_FLAG;
-import static main.ArgumentParser.VERBOSE_FALSE;
-import static main.ArgumentParser.VERBOSE_FLAG;
-import static main.Command.DEFAULT_URL_LIST;
-import static main.Command.Mode.DOWNLOAD;
-import static main.Command.Mode.HELP;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

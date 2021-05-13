@@ -1,4 +1,4 @@
-package exceptions;
+package dlexceptions;
 
 public class InvalidArgumentException extends Exception {
     private final String message;

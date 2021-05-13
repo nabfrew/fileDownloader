@@ -1,6 +1,6 @@
-package main;
+package com;
 
-import exceptions.InvalidArgumentException;
+import dlexceptions.InvalidArgumentException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,12 +10,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ArgumentParser.OUTPUT_DIRECTORY_FLAG;
+import static com.ArgumentParser.URL_LIST_FLAG;
+import static com.ArgumentParser.VERBOSE_FALSE;
+import static com.ArgumentParser.VERBOSE_FLAG;
+import static com.ArgumentParser.VERBOSE_TRUE;
 import static java.lang.Boolean.TRUE;
-import static main.ArgumentParser.OUTPUT_DIRECTORY_FLAG;
-import static main.ArgumentParser.URL_LIST_FLAG;
-import static main.ArgumentParser.VERBOSE_FALSE;
-import static main.ArgumentParser.VERBOSE_FLAG;
-import static main.ArgumentParser.VERBOSE_TRUE;
 
 public class Command {
     public static final String DEFAULT_URL_LIST = "urlList.txt";

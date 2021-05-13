@@ -1,23 +1,23 @@
-package main;
+package com;
 
-import exceptions.InvalidArgumentException;
+import dlexceptions.InvalidArgumentException;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static main.Command.Mode.DOWNLOAD;
-import static main.Command.Mode.HELP;
+import static com.Command.Mode.DOWNLOAD;
+import static com.Command.Mode.HELP;
 
 public record ArgumentParser(String[] args) {
 
-    protected static final List<String> HELP_FLAG = Arrays.asList("-h", "-help");
-    protected static final List<String> OUTPUT_DIRECTORY_FLAG = Arrays.asList("-d", "-directory");
-    protected static final List<String> VERBOSE_FLAG = Arrays.asList("-v", "-verbose");
+    public static final List<String> HELP_FLAG = Arrays.asList("-h", "-help");
+    public static final List<String> OUTPUT_DIRECTORY_FLAG = Arrays.asList("-d", "-directory");
+    public static final List<String> VERBOSE_FLAG = Arrays.asList("-v", "-verbose");
     public static final List<String> VERBOSE_FALSE = Arrays.asList("f", "false");
     public static final List<String> VERBOSE_TRUE = Arrays.asList("t", "true");
-    protected static final List<String> URL_LIST_FLAG = Collections.singletonList("-url");
+    public static final List<String> URL_LIST_FLAG = Collections.singletonList("-url");
 
     public Command parse() throws InvalidArgumentException, IOException {
         Command command = new Command();

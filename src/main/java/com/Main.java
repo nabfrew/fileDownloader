@@ -1,17 +1,15 @@
-package main;
+package com;
 
-import exceptions.InvalidArgumentException;
+import dlexceptions.InvalidArgumentException;
 
 import java.io.IOException;
 
-import static main.ArgumentParser.HELP_FLAG;
-import static main.ArgumentParser.OUTPUT_DIRECTORY_FLAG;
-import static main.ArgumentParser.URL_LIST_FLAG;
-import static main.ArgumentParser.VERBOSE_FALSE;
-import static main.ArgumentParser.VERBOSE_FLAG;
-import static main.ArgumentParser.VERBOSE_TRUE;
-import static main.Command.DEFAULT_URL_LIST;
-import static main.Command.Mode.HELP;
+import static com.ArgumentParser.URL_LIST_FLAG;
+import static com.ArgumentParser.VERBOSE_FALSE;
+import static com.ArgumentParser.VERBOSE_FLAG;
+import static com.ArgumentParser.VERBOSE_TRUE;
+import static com.Command.DEFAULT_URL_LIST;
+import static com.Command.Mode.HELP;
 
 public class Main {
 
@@ -42,13 +40,13 @@ public class Main {
     }
 
     private static String helpText() {
-        return "Usage: fileDownloader " + OUTPUT_DIRECTORY_FLAG + " " + URL_LIST_FLAG + " " + VERBOSE_FLAG +"\n\n"
+        return "Usage: fileDownloader " + ArgumentParser.OUTPUT_DIRECTORY_FLAG + " " + URL_LIST_FLAG + " " + VERBOSE_FLAG +"\n\n"
                 + "Options:\n"
-                + "\t" + OUTPUT_DIRECTORY_FLAG + "\n\t\tDirectory to download to. Default: [pwd].\n"
+                + "\t" + ArgumentParser.OUTPUT_DIRECTORY_FLAG + "\n\t\tDirectory to download to. Default: [pwd].\n"
                 + "\t" + URL_LIST_FLAG + "\n\t\tPath to text file containing urls to download. Default: [pwd]/"+ DEFAULT_URL_LIST + ".\n"
                 + "\t" + URL_LIST_FLAG + "\n\t\tDirectory to download to. Default: present working directory.\n"
                 + "\t" + VERBOSE_FLAG + "\n\t\t" + VERBOSE_TRUE + "/" + VERBOSE_FALSE + "\n"
-                + "\t" + HELP_FLAG + "\n\t\tDisplay this message.";
+                + "\t" + ArgumentParser.HELP_FLAG + "\n\t\tDisplay this message.";
     }
 
     /*  (For the record, I'm aware code comments is not a good method of
