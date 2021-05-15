@@ -44,7 +44,6 @@ public class Main {
                 + "Options:\n"
                 + "\t" + ArgumentParser.OUTPUT_DIRECTORY_FLAG + "\n\t\tDirectory to download to. Default: [pwd].\n"
                 + "\t" + URL_LIST_FLAG + "\n\t\tPath to text file containing urls to download. Default: [pwd]/"+ DEFAULT_URL_LIST + ".\n"
-                + "\t" + URL_LIST_FLAG + "\n\t\tDirectory to download to. Default: present working directory.\n"
                 + "\t" + VERBOSE_FLAG + "\n\t\t" + VERBOSE_TRUE + "/" + VERBOSE_FALSE + "\n"
                 + "\t" + ArgumentParser.HELP_FLAG + "\n\t\tDisplay this message.";
     }
