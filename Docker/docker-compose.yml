@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  file_downloader:
+    environment:
+      - "CONTAINER_JAR_NAME:${CONTAINER_JAR_NAME}"
+      - "HOST_JAR_PATH:${HOST_JAR_PATH}"
+      - "CONTAINER_VOL_DIR:{CONTAINER_VOL_DIR}"
+      - "DOWNLOAD_DIR:${DOWNLOAD_DIR}"
+      - "HOST_URL_FILE_PATH:${HOST_URL_FILE_PATH}"
+      - "URL_FILE_NAME:{$URL_FILE_NAME}"
+    build: .
+    volumes:
+      - "${HOST_BIND_DIRECTORY}:${CONTAINER_VOL_DIR}"

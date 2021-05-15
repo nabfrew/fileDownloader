@@ -10,7 +10,3 @@
 # dev
 /.idea/
 /target/
-
-#manual testing.
-urlList.txt
-/downloaded/

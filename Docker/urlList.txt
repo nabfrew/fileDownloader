@@ -1,0 +1,19 @@
+#Example for testing
+
+#local: (wont work with docker)
+file:///home/august/Downloads/IMG_4347.jpg
+
+# Important documents.
+https://i.redd.it/xh8k3xg687n51.jpg
+https://i.redd.it/34cmgco4l0z61.png
+https://i.redd.it/gwzc2rrofjd61.jpg
+https://i.redd.it/t6gtj8y552q51.jpg
+https://i.redd.it/cgxof0jkru551.png
+https://i.redd.it/z2linnrtk9x51.png
+https://i.redd.it/kuomd0qguyt61.jpg
+https://i.redd.it/0exgsvjwze751.jpg
+https://i.redd.it/3csc0mifl0l31.jpg
+https://i.redd.it/g2gxy0k47iy31.png
+
+# invalid:
+| This is not a valid url! |
