@@ -13,7 +13,7 @@ import static com.Command.Mode.HELP;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         var command = new Command();
         try {
             command = new ArgumentParser(args).parse();

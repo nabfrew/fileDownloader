@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,14 +24,15 @@ public class Command {
     private Mode mode;
     private File outputDirectory;
     private String urlListFile;
-    private final List<String> urls = new ArrayList<>();
+    private final List<String> invalidUrls = new ArrayList<>();
+    private final List<URL> urls = new ArrayList<>();
     private Boolean verbose;
 
     public File getOutputDirectory() {
         return outputDirectory;
     }
 
-    public List<String> getUrls() {
+    public List<URL> getUrls() {
         return urls;
     }
 
@@ -95,7 +98,8 @@ public class Command {
         }
     }
 
-    public void execute() {
+    public void execute() throws IOException {
+        new FileDownloader(urls, outputDirectory).downloadFiles();
     }
 
     private void setUrls() throws IOException {
@@ -105,11 +109,20 @@ public class Command {
             while ((url = bufferReader.readLine()) != null) {
                 // Allow for some commenting and formatting.
                 if (!url.startsWith("#") && !url.equals("")) {
-                    urls.add(url);
+                    addUrl(url);
                 }
             }
         } catch (FileNotFoundException ex) {
             System.out.println("Url list file, " + urlListFile + " not found.");
+        }
+    }
+
+    private void addUrl(String urlString) {
+        try {
+            var url = new URL(urlString);
+            urls.add(url);
+        } catch (MalformedURLException ex) {
+            invalidUrls.add(urlString);
         }
     }
 
@@ -136,13 +149,19 @@ public class Command {
             string.append("\nDownloading from urls in:\n\t").append(urlListFile);
         }
         if (!urls.isEmpty()) {
-            string.append("\nSource file(s):");
-            for (String url : urls) {
+            string.append("\nurls to be downloaded:");
+            for (URL url : urls) {
+                string.append("\n\t").append(url);
+            }
+        }
+        if (!invalidUrls.isEmpty()) {
+            string.append("\ninvalid urls:");
+            for (String url : invalidUrls) {
                 string.append("\n\t").append(url);
             }
         }
         if (outputDirectory != null) {
-            string.append("\nTo directory:\n\t").append(outputDirectory);
+            string.append("\nTo directory:\n\t").append(outputDirectory.getAbsolutePath());
         }
 
         return string.toString();
