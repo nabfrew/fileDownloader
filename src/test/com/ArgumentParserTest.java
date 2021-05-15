@@ -100,6 +100,11 @@ class ArgumentParserTest {
         assertThrows(InvalidArgumentException.class, () -> new ArgumentParser(args).parse());
     }
 
+    @Test
+    void unrecognisedFlag() {
+        String[] args = {"-f", "a"};
+        assertThrows(InvalidArgumentException.class, () -> new ArgumentParser(args).parse());
+    }
     // Helper methods
 
     private void writeFile(String file) throws IOException {
